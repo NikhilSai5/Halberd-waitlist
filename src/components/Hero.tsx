@@ -1,32 +1,68 @@
+import { ChevronDown, Sparkles, Shield, Clock } from 'lucide-react';
 import { WaitlistForm } from './WaitlistForm';
 
 export function Hero() {
   return (
-    <section id="top" className="relative min-h-[820px] overflow-hidden border-b border-[#dfded7] pt-[82px] lg:min-h-[980px]">
-      <div className="section-wrap relative z-10 flex min-h-[738px] flex-col lg:min-h-[898px]">
+    <section id="top" className="relative min-h-[860px] overflow-hidden border-b border-[#dfded7] pt-[82px] lg:min-h-[1020px]">
+      {/* Ambient background glow */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_46%,rgba(72,101,81,0.08),transparent_75%)]" />
+
+      <div className="section-wrap relative z-10 flex min-h-[778px] flex-col lg:min-h-[938px]">
+        {/* Top-left editorial eyebrow */}
         <div className="absolute z-0 pt-10 sm:pt-16">
-          <div className="max-w-[160px]">
+          <div className="max-w-[170px]">
             <p className="eyebrow leading-[1.8]">A more<br />focused<br />internet.</p>
             <div className="mt-5 h-px w-full bg-[#c5c5bc] line-reveal" />
           </div>
         </div>
-        <div className="absolute right-0 top-10 max-w-[145px] text-right sm:top-[64%]">
+
+        {/* Top-right editorial eyebrow */}
+        <div className="absolute right-0 top-10 max-w-[155px] text-right sm:top-[60%]">
           <p className="eyebrow leading-[1.8]">Small steps.<br />A better you.</p>
           <div className="mt-5 ml-auto h-px w-full bg-[#c5c5bc] line-reveal" />
         </div>
 
-        <div className="relative z-10 flex flex-1 items-center justify-center">
-          <div className="pointer-events-none absolute left-1/2 top-[44%] z-0 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-[clamp(3.6rem,18vw,17rem)] font-bold leading-[.73] tracking-[-.105em] text-[#111111] fade-up" aria-hidden="true">
-            HALBERD
-          </div>
-          <div className="hero-knight absolute left-1/2 top-[46%] z-10 h-[min(67vw,400px)] w-[min(67vw,400px)] -translate-x-1/2 -translate-y-1/2 sm:top-[42%] sm:h-[min(66vw,650px)] sm:w-[min(66vw,650px)]">
-            <img src="/assets/halberd-knight.png" alt="A knight holding a halberd and shield" className="h-full w-full object-contain drop-shadow-[0_22px_17px_rgba(17,19,15,.15)]" />
-          </div>
-          <div className="absolute bottom-[14%] left-1/2 z-20 h-5 w-[min(55vw,390px)] -translate-x-1/2 rounded-[50%] bg-[#20241f]/10 blur-md" />
+        {/* Floating micro badges around the knight */}
+        <div className="pointer-events-none absolute left-4 top-[32%] z-20 hidden md:flex items-center gap-2 rounded-full border border-[#d6d4ca] bg-[#fbfaf6]/90 px-3.5 py-1.5 text-[11px] font-medium text-[#40473c] shadow-sm backdrop-blur-xs transition-all hover:scale-105">
+          <Clock size={12} className="text-[#486551]" />
+          <span>Intentional browsing</span>
         </div>
 
-        <div className="relative z-20 flex justify-center pb-10 sm:pb-12">
+        <div className="pointer-events-none absolute right-4 top-[36%] z-20 hidden md:flex items-center gap-2 rounded-full border border-[#d6d4ca] bg-[#fbfaf6]/90 px-3.5 py-1.5 text-[11px] font-medium text-[#40473c] shadow-sm backdrop-blur-xs transition-all hover:scale-105">
+          <Shield size={12} className="text-[#486551]" />
+          <span>Zero tab clutter</span>
+        </div>
+
+        {/* Central HALBERD typographic centerpiece + Knight */}
+        <div className="relative z-10 flex flex-1 items-center justify-center">
+          <div
+            className="pointer-events-none absolute left-1/2 top-[44%] z-0 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-[clamp(3.8rem,18.5vw,17.5rem)] font-bold leading-[.73] tracking-[-.105em] text-[#111111] fade-up select-none"
+            aria-hidden="true"
+          >
+            HALBERD
+          </div>
+          <div className="hero-knight absolute left-1/2 top-[46%] z-10 h-[min(67vw,420px)] w-[min(67vw,420px)] -translate-x-1/2 -translate-y-1/2 sm:top-[42%] sm:h-[min(66vw,660px)] sm:w-[min(66vw,660px)]">
+            <img
+              src="/assets/halberd-knight.png"
+              alt="A knight holding a halberd and shield"
+              className="h-full w-full object-contain drop-shadow-[0_26px_22px_rgba(17,19,15,.16)] transition-transform duration-700 hover:scale-[1.02]"
+            />
+          </div>
+          <div className="absolute bottom-[14%] left-1/2 z-20 h-6 w-[min(55vw,410px)] -translate-x-1/2 rounded-[50%] bg-[#20241f]/10 blur-md" />
+        </div>
+
+        {/* Waitlist Call-to-Action & Down Indicator */}
+        <div className="relative z-20 flex flex-col items-center pb-8 sm:pb-10">
           <WaitlistForm formId="hero-waitlist" />
+
+          <a
+            href="#features"
+            className="group mt-6 flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-widest text-[#737a6e] transition-colors hover:text-[#19211b]"
+            aria-label="Explore features"
+          >
+            <span>Explore Halberd</span>
+            <ChevronDown size={14} className="transition-transform group-hover:translate-y-0.5 text-[#486551]" />
+          </a>
         </div>
       </div>
     </section>

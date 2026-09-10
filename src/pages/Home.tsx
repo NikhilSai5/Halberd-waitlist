@@ -1,6 +1,7 @@
 import { Navbar } from '@/components/Navbar';
 import { Hero } from '@/components/Hero';
 import { QuieterWay } from '@/components/sections/QuieterWay';
+import { Showcase } from '@/components/sections/Showcase';
 import { Calendar } from '@/components/sections/Calendar';
 import { FloatingCircle } from '@/components/sections/FloatingCircle';
 import { Todo } from '@/components/sections/Todo';
@@ -19,6 +20,7 @@ export default function Home() {
       <main id="main-content">
         <Hero />
         <QuieterWay />
+        <Showcase />
         <Calendar />
         <FloatingCircle />
         <Todo />
