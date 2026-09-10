@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Bell, Flame, Target, Timer, Sparkles, CheckCircle2 } from 'lucide-react';
 import { Reveal } from '../Reveal';
 
@@ -61,10 +61,39 @@ const features: Feature[] = [
   },
 ];
 
+const ROTATION_INTERVAL_MS = 15000; // 15 seconds
+
 export function FloatingCircle() {
   const [activeIdx, setActiveIdx] = useState(0);
   const [timerSeconds, setTimerSeconds] = useState(1495); // 24:55
+  const [progress, setProgress] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const startTimeRef = useRef<number>(Date.now());
   const activeFeature = features[activeIdx];
+
+  // Auto-rotate every 15 seconds
+  useEffect(() => {
+    startTimeRef.current = Date.now();
+    setProgress(0);
+
+    const timer = setInterval(() => {
+      if (!isPaused) {
+        setActiveIdx((prev) => (prev + 1) % features.length);
+      }
+    }, ROTATION_INTERVAL_MS);
+
+    const progressTicker = setInterval(() => {
+      if (!isPaused) {
+        const elapsed = (Date.now() - startTimeRef.current) % ROTATION_INTERVAL_MS;
+        setProgress((elapsed / ROTATION_INTERVAL_MS) * 100);
+      }
+    }, 100);
+
+    return () => {
+      clearInterval(timer);
+      clearInterval(progressTicker);
+    };
+  }, [activeIdx, isPaused]);
 
   // Subtle live ticking preview for Pomodoro / Focus
   useEffect(() => {
@@ -78,6 +107,12 @@ export function FloatingCircle() {
     const m = Math.floor(secs / 60);
     const s = secs % 60;
     return `${m}:${s < 10 ? '0' : ''}${s}`;
+  };
+
+  const handleSelect = (index: number) => {
+    setActiveIdx(index);
+    startTimeRef.current = Date.now();
+    setProgress(0);
   };
 
   return (
@@ -95,21 +130,52 @@ export function FloatingCircle() {
               <span className="display-serif">always within reach.</span>
             </h2>
           </div>
-          <p className="max-w-[380px] text-sm leading-6 text-[#666960]">
-            Never lose your place. A single unobtrusive circle rests quietly at the edge of your screen, expanding into just what you need with a single click.
-          </p>
+          <div className="max-w-[380px]">
+            <p className="text-sm leading-6 text-[#666960]">
+              Never lose your place. A single unobtrusive circle rests quietly at the edge of your screen, expanding into just what you need with a single click.
+            </p>
+            {/* Auto-rotation indicator */}
+            <div className="mt-3 flex items-center gap-2 text-[11px] text-[#788072]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#486551] animate-pulse" />
+              <span>Auto-rotating every 15 seconds (pause on hover)</span>
+            </div>
+          </div>
         </Reveal>
 
         {/* Interactive Simulation Sandbox */}
         <Reveal delay="delay-1" className="mb-16">
-          <div className="overflow-hidden rounded-2xl border border-[#d6d5cb] bg-[#f5f4ed] shadow-sm">
-            {/* Simulation Header */}
-            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#dfded7] bg-[#eeece3] px-6 py-3.5 text-xs text-[#62675e]">
-              <div className="flex items-center gap-2">
-                <span className="h-2.5 w-2.5 rounded-full bg-[#486551] animate-pulse" />
-                <span className="font-mono text-[11px] uppercase tracking-wider text-[#404b3f]">Interactive Floating Widget Simulator</span>
+          <div
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => {
+              setIsPaused(false);
+              startTimeRef.current = Date.now();
+            }}
+            className="overflow-hidden rounded-2xl border border-[#d6d5cb] bg-[#f5f4ed] shadow-sm"
+          >
+            {/* Simulation Header with 15s Progress Bar */}
+            <div className="relative border-b border-[#dfded7] bg-[#eeece3] px-6 py-3.5 text-xs text-[#62675e]">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="flex items-center gap-2">
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#486551] animate-pulse" />
+                  <span className="font-mono text-[11px] uppercase tracking-wider text-[#404b3f]">
+                    Interactive Floating Widget Simulator
+                  </span>
+                </div>
+                <div className="flex items-center gap-3 text-[11px] text-[#6b7267]">
+                  <span>{isPaused ? 'Paused on hover' : 'Next tool in 15s'}</span>
+                  <span className="font-mono text-[#486551]">
+                    0{activeIdx + 1} / 0{features.length}
+                  </span>
+                </div>
               </div>
-              <div className="text-[11px] text-[#6b7267]">Click any tool to preview its floating state</div>
+
+              {/* 15s Progress Bar */}
+              <div className="absolute bottom-0 left-0 h-[2px] w-full bg-[#dfded7]">
+                <div
+                  className="h-full bg-[#486551] transition-all duration-100 ease-linear"
+                  style={{ width: isPaused ? '100%' : `${progress}%` }}
+                />
+              </div>
             </div>
 
             <div className="grid lg:grid-cols-[1fr_1.3fr]">
@@ -123,7 +189,7 @@ export function FloatingCircle() {
                       <button
                         key={feature.id}
                         type="button"
-                        onClick={() => setActiveIdx(idx)}
+                        onClick={() => handleSelect(idx)}
                         className={`flex items-start gap-4 rounded-xl p-4 text-left transition-all ${
                           isSelected
                             ? 'border border-[#486551]/30 bg-[#fbfaf6] shadow-sm'
@@ -142,7 +208,11 @@ export function FloatingCircle() {
                             <span className="font-mono text-[10px] tracking-wider text-[#798072]">
                               {feature.number} / {feature.badge}
                             </span>
-                            {isSelected && <span className="text-[10px] font-medium text-[#486551]">Active</span>}
+                            {isSelected && (
+                              <span className="rounded-full bg-[#e8efe9] px-2 py-0.5 text-[10px] font-medium text-[#486551]">
+                                Showing
+                              </span>
+                            )}
                           </div>
                           <h3 className="mt-1 text-base font-medium tracking-tight text-[#181a15]">
                             {feature.shortLabel}
@@ -183,7 +253,7 @@ export function FloatingCircle() {
                   </div>
 
                   {/* The Floating Circle Capsule containing the real image asset */}
-                  <div className="group relative flex items-center justify-center rounded-3xl border border-[#486551]/20 bg-[#fdfdfa]/95 p-4 shadow-[0_18px_38px_rgba(20,24,18,0.14)] backdrop-blur-sm transition-transform duration-300 hover:scale-105">
+                  <div className="group relative flex items-center justify-center rounded-3xl border border-[#486551]/20 bg-[#fdfdfa]/95 p-4 shadow-[0_18px_38px_rgba(20,24,18,0.14)] backdrop-blur-sm transition-all duration-500">
                     {activeFeature.id === 'habits' ? (
                       <div className="flex items-center gap-4 px-3 py-2">
                         <img
@@ -202,7 +272,7 @@ export function FloatingCircle() {
                         <img
                           src={activeFeature.image}
                           alt={activeFeature.title}
-                          className="max-h-20 w-auto object-contain drop-shadow-sm"
+                          className="max-h-20 w-auto object-contain drop-shadow-sm transition-all duration-300"
                         />
                         {(activeFeature.id === 'pomodoro' || activeFeature.id === 'focus') && (
                           <div className="mt-2 text-center">
@@ -227,7 +297,7 @@ export function FloatingCircle() {
           </div>
         </Reveal>
 
-        {/* 4 Cards Grid - Enhanced visual cards */}
+        {/* 4 Cards Grid */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {features.map((feature, index) => {
             const Icon = feature.icon;
@@ -235,10 +305,10 @@ export function FloatingCircle() {
             return (
               <Reveal key={feature.number} delay={`delay-${index + 1}`}>
                 <div
-                  onClick={() => setActiveIdx(index)}
+                  onClick={() => handleSelect(index)}
                   className={`cursor-pointer rounded-xl border p-6 transition-all duration-300 ${
                     isCurrent
-                      ? 'border-[#486551] bg-[#fbfaf6] shadow-md'
+                      ? 'border-[#486551] bg-[#fbfaf6] shadow-md ring-1 ring-[#486551]/20'
                       : 'border-[#dfded7] bg-[#fdfdfa] hover:border-[#b8b7ae] hover:bg-[#f6f5ec]'
                   }`}
                 >
@@ -248,7 +318,7 @@ export function FloatingCircle() {
                   </div>
                   <h3 className="mt-4 text-lg font-medium tracking-tight text-[#161814]">{feature.shortLabel}</h3>
                   <p className="mt-2 text-xs leading-5 text-[#666960]">{feature.description}</p>
-                  
+
                   {/* Embedded pill asset preview */}
                   <div className="mt-5 flex h-20 items-center justify-center rounded-lg border border-[#e4e3da] bg-[#f3f2ea] p-2">
                     <img

@@ -23,17 +23,17 @@ export function Hero() {
         </div>
 
         {/* Floating micro badges around the knight */}
-        <div className="pointer-events-none absolute left-4 top-[32%] z-20 hidden md:flex items-center gap-2 rounded-full border border-[#d6d4ca] bg-[#fbfaf6]/90 px-3.5 py-1.5 text-[11px] font-medium text-[#40473c] shadow-sm backdrop-blur-xs transition-all hover:scale-105">
+        <div className="pointer-events-none absolute left-4 top-[32%] z-20 hidden md:flex items-center gap-2 rounded-full border border-[#d6d4ca] bg-[#fbfaf6]/90 px-3.5 py-1.5 text-[11px] font-medium text-[#40473c] shadow-sm backdrop-blur-xs">
           <Clock size={12} className="text-[#486551]" />
           <span>Intentional browsing</span>
         </div>
 
-        <div className="pointer-events-none absolute right-4 top-[36%] z-20 hidden md:flex items-center gap-2 rounded-full border border-[#d6d4ca] bg-[#fbfaf6]/90 px-3.5 py-1.5 text-[11px] font-medium text-[#40473c] shadow-sm backdrop-blur-xs transition-all hover:scale-105">
+        <div className="pointer-events-none absolute right-4 top-[36%] z-20 hidden md:flex items-center gap-2 rounded-full border border-[#d6d4ca] bg-[#fbfaf6]/90 px-3.5 py-1.5 text-[11px] font-medium text-[#40473c] shadow-sm backdrop-blur-xs">
           <Shield size={12} className="text-[#486551]" />
           <span>Zero tab clutter</span>
         </div>
 
-        {/* Central HALBERD typographic centerpiece + Knight */}
+        {/* Central HALBERD typographic centerpiece + Knight with Realistic Human Ground Shadow */}
         <div className="relative z-10 flex flex-1 items-center justify-center">
           <div
             className="pointer-events-none absolute left-1/2 top-[44%] z-0 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-[clamp(3.8rem,18.5vw,17.5rem)] font-bold leading-[.73] tracking-[-.105em] text-[#111111] fade-up select-none"
@@ -41,14 +41,25 @@ export function Hero() {
           >
             HALBERD
           </div>
+
+          {/* Knight image without hover zoom animation */}
           <div className="hero-knight absolute left-1/2 top-[46%] z-10 h-[min(67vw,420px)] w-[min(67vw,420px)] -translate-x-1/2 -translate-y-1/2 sm:top-[42%] sm:h-[min(66vw,660px)] sm:w-[min(66vw,660px)]">
             <img
               src="/assets/halberd-knight.png"
               alt="A knight holding a halberd and shield"
-              className="h-full w-full object-contain drop-shadow-[0_26px_22px_rgba(17,19,15,.16)] transition-transform duration-700 hover:scale-[1.02]"
+              className="h-full w-full object-contain"
             />
           </div>
-          <div className="absolute bottom-[14%] left-1/2 z-20 h-6 w-[min(55vw,410px)] -translate-x-1/2 rounded-[50%] bg-[#20241f]/10 blur-md" />
+
+          {/* Human Ground Shadow System: Multi-layer depth mimicking standing ground contact */}
+          <div className="pointer-events-none absolute left-1/2 bottom-[13%] sm:bottom-[10%] z-0 -translate-x-1/2 flex items-center justify-center">
+            {/* Broad ambient ground occlusion falloff */}
+            <div className="h-10 sm:h-14 w-[min(58vw,440px)] rounded-[50%] bg-[#151912]/20 blur-xl" />
+            {/* Elongated cast shadow matching foot positioning */}
+            <div className="absolute h-6 sm:h-9 w-[min(46vw,340px)] rounded-[50%] bg-[#12160f]/45 blur-md translate-y-1" />
+            {/* Deep ground contact occlusion directly under the boots */}
+            <div className="absolute h-3 sm:h-4 w-[min(32vw,220px)] rounded-[50%] bg-[#0a0d08]/75 blur-[3px] translate-y-2" />
+          </div>
         </div>
 
         {/* Waitlist Call-to-Action & Down Indicator */}
