@@ -1,7 +1,10 @@
 import { Navbar } from '@/components/Navbar';
 import { Hero } from '@/components/Hero';
 import { QuieterWay } from '@/components/sections/QuieterWay';
-import { Features } from '@/components/sections/Features';
+import { Calendar } from '@/components/sections/Calendar';
+import { FloatingCircle } from '@/components/sections/FloatingCircle';
+import { Todo } from '@/components/sections/Todo';
+import { DigitalPet } from '@/components/sections/DigitalPet';
 import { Method } from '@/components/sections/Method';
 import { Philosophy } from '@/components/sections/Philosophy';
 import { FAQ } from '@/components/sections/FAQ';
@@ -16,7 +19,10 @@ export default function Home() {
       <main id="main-content">
         <Hero />
         <QuieterWay />
-        <Features />
+        <Calendar />
+        <FloatingCircle />
+        <Todo />
+        <DigitalPet />
         <Method />
         <Philosophy />
         <FAQ />

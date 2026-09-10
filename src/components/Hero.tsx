@@ -4,7 +4,7 @@ export function Hero() {
   return (
     <section id="top" className="relative min-h-[820px] overflow-hidden border-b border-[#dfded7] pt-[82px] lg:min-h-[980px]">
       <div className="section-wrap relative z-10 flex min-h-[738px] flex-col lg:min-h-[898px]">
-        <div className="relative z-0 pt-10 sm:pt-16">
+        <div className="absolute z-0 pt-10 sm:pt-16">
           <div className="max-w-[160px]">
             <p className="eyebrow leading-[1.8]">A more<br />focused<br />internet.</p>
             <div className="mt-5 h-px w-full bg-[#c5c5bc] line-reveal" />
@@ -15,7 +15,7 @@ export function Hero() {
           <div className="mt-5 ml-auto h-px w-full bg-[#c5c5bc] line-reveal" />
         </div>
 
-        <div className="relative flex flex-1 items-center justify-center">
+        <div className="relative z-10 flex flex-1 items-center justify-center">
           <div className="pointer-events-none absolute left-1/2 top-[44%] z-0 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-[clamp(3.6rem,18vw,17rem)] font-bold leading-[.73] tracking-[-.105em] text-[#111111] fade-up" aria-hidden="true">
             HALBERD
           </div>

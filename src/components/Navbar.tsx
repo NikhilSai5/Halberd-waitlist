@@ -6,7 +6,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   return (
-    <header className="absolute inset-x-0 top-0 z-40">
+    <header className="fixed inset-x-0 top-0 z-40">
       <div className="section-wrap flex h-[82px] items-center justify-between">
         <Mark />
         <nav className="hidden items-center gap-9 md:flex" aria-label="Main navigation">
