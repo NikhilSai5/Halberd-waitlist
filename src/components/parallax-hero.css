@@ -1,0 +1,267 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+.parallax-hero {
+  position: relative;
+  height: 100vh;
+  min-height: 700px;
+  width: 100%;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.parallax-hero .parallax {
+  position: absolute;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  max-width: none;
+}
+
+.parallax-hero .bg-img {
+  width: 2800px;
+  top: calc(50% - 390px);
+  left: calc(50% + 10px);
+  z-index: 1;
+}
+
+.parallax-hero .fog-1 {
+  z-index: 2;
+  top: calc(50% - 100px);
+  left: calc(50% + 300px);
+  width: 1900px;
+}
+
+.parallax-hero .mountain-10 {
+  z-index: 3;
+  top: calc(50% + 69px);
+  width: 870px;
+  left: calc(50% + 230px);
+}
+
+.parallax-hero .fog-2 {
+  z-index: 4;
+  top: calc(50% + 95px);
+  left: calc(50% + 7px);
+  width: 1833px;
+}
+
+.parallax-hero .mountain-9 {
+  z-index: 5;
+  top: calc(50% + 119px);
+  width: 463px;
+  left: calc(50% - 457px);
+}
+
+.parallax-hero .mountain-8 {
+  z-index: 6;
+  top: calc(50% + 96px);
+  width: 786px;
+  left: calc(50% - 202px);
+}
+
+.parallax-hero .fog-3 {
+  z-index: 7;
+  top: calc(50% + 171px);
+  left: calc(50% + 29px);
+  width: 449px;
+}
+
+.parallax-hero .mountain-7 {
+  z-index: 8;
+  width: 515px;
+  top: calc(50% + 134px);
+  left: calc(50% + 305px);
+}
+
+.parallax-hero .text {
+  position: absolute;
+  z-index: 9;
+  top: calc(50% - 130px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  pointer-events: auto;
+  user-select: none;
+}
+
+.parallax-hero .text h2 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-size: 6.8rem;
+  line-height: 0.88;
+  letter-spacing: -2px;
+}
+
+.parallax-hero .text h1 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  line-height: 0.88;
+  font-size: 8.7rem;
+  letter-spacing: -4px;
+}
+
+.parallax-hero .mountain-6 {
+  z-index: 10;
+  top: calc(50% + 86.5px);
+  width: 383.5px;
+  left: calc(50% + 590px);
+}
+
+.parallax-hero .fog-4 {
+  z-index: 11;
+  top: calc(50% + 242px);
+  left: calc(50% - 64px);
+  width: 543px;
+}
+
+.parallax-hero .mountain-5 {
+  z-index: 12;
+  top: calc(50% + 269px);
+  width: 583px;
+  left: calc(50% + 130px);
+}
+
+.parallax-hero .fog-5 {
+  z-index: 13;
+  top: calc(50% + 149px);
+  left: calc(50% - 28px);
+  width: 1435px;
+}
+
+.parallax-hero .mountain-4 {
+  z-index: 14;
+  top: calc(50% + 221px);
+  width: 717px;
+  left: calc(50% - 381.5px);
+}
+
+.parallax-hero .mountain-3 {
+  z-index: 15;
+  top: calc(50% + 133px);
+  left: calc(50% + 736px);
+  width: 419px;
+}
+
+.parallax-hero .fog-6 {
+  z-index: 16;
+  top: calc(50% + 177px);
+  left: calc(50% - 30px);
+  width: 1418px;
+}
+
+.parallax-hero .mountain-2 {
+  z-index: 17;
+  top: calc(50% + 188px);
+  left: calc(50% + 412px);
+  width: 625px;
+}
+
+.parallax-hero .mountain-1 {
+  z-index: 18;
+  top: calc(50% + 91.5px);
+  left: calc(50% - 601px);
+  width: 450px;
+}
+
+.parallax-hero .sun-rays {
+  position: absolute;
+  z-index: 19;
+  top: 0;
+  right: 0%;
+  width: 595px;
+  pointer-events: none;
+}
+
+.parallax-hero .black-shadow {
+  position: absolute;
+  z-index: 20;
+  bottom: 0;
+  right: 0%;
+  pointer-events: none;
+  width: 100%;
+}
+
+.parallax-hero .fog-7 {
+  position: absolute;
+  z-index: 21;
+  top: calc(50% + 85px);
+  left: calc(50% + 10px);
+  width: 1610px;
+}
+
+.parallax-hero .vignette {
+  position: absolute;
+  z-index: 22;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0) 65%,
+    rgba(0, 0, 0, 0.7)
+  );
+  pointer-events: none;
+}
+
+.parallax-hero .hero-interactive-overlay {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 0;
+  right: 0;
+  z-index: 25;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: auto;
+}
+
+/* Responsive Breakpoints */
+
+@media screen and (max-width: 1100px) {
+  .parallax-hero .text h1 {
+    font-size: 5.8rem;
+  }
+
+  .parallax-hero .text h2 {
+    font-size: 4.7rem;
+  }
+}
+
+@media screen and (max-width: 725px) {
+  .parallax-hero .text h1 {
+    font-size: 4.4rem;
+    line-height: 1.1;
+  }
+
+  .parallax-hero .text h2 {
+    font-size: 3.8rem;
+    line-height: 1.1;
+  }
+
+  .parallax-hero .mountain-2 {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .parallax-hero .text h1 {
+    font-size: 3.3rem;
+  }
+
+  .parallax-hero .text h2 {
+    font-size: 2.6rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .parallax-hero .text h1 {
+    font-size: 2.4rem;
+  }
+
+  .parallax-hero .text h2 {
+    font-size: 2rem;
+  }
+}
