@@ -378,10 +378,10 @@ export function Hero() {
 
         <a
           href="#features"
-          className="hero-arrow group mt-0.5 flex items-center justify-center rounded-full p-2 text-white/80 transition-all hover:text-white hover:opacity-100"
+          className="hero-arrow group mt-2 flex items-center justify-center rounded-full border border-white/30 bg-black/40 p-2 text-white shadow-lg backdrop-blur-sm transition-all hover:border-white/60 hover:bg-black/60 hover:text-white"
           aria-label="Explore features"
         >
-          <ChevronDown size={22} />
+          <ChevronDown size={22} strokeWidth={2.2} className="animate-bounce" />
         </a>
       </div>
     </section>

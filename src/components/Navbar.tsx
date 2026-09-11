@@ -17,10 +17,10 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'border-b border-[#dfded7]/80 bg-[#fbfaf6]/90 backdrop-blur-md shadow-[0_4px_20px_rgba(20,24,18,0.03)]'
-          : 'bg-transparent'
+          ? 'border-b border-white/20 bg-white/10 backdrop-blur-xl backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.06)]'
+          : 'bg-white/5 backdrop-blur-md backdrop-saturate-125'
       }`}
     >
       <div className="section-wrap flex h-[78px] items-center justify-between">
@@ -57,14 +57,14 @@ export function Navbar() {
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
           onClick={() => setOpen((current) => !current)}
-          className="rounded-full border border-[#c1c2ba] bg-[#fbfaf6] p-2.5 text-[#181a16] shadow-xs md:hidden"
+          className="rounded-full border border-white/20 bg-white/10 backdrop-blur-md p-2.5 text-[#181a16] shadow-xs md:hidden"
         >
           {open ? <X size={17} /> : <Menu size={17} />}
         </button>
       </div>
 
       {open && (
-        <div className="mx-4 mb-3 rounded-2xl border border-[#d4d4cc] bg-[#fdfdfa] p-6 shadow-[0_16px_36px_rgba(30,32,25,.12)] md:hidden">
+        <div className="mx-4 mb-3 rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl backdrop-saturate-150 p-6 shadow-[0_16px_48px_rgba(0,0,0,0.1)] md:hidden">
           <nav className="flex flex-col gap-4" aria-label="Mobile navigation">
             <a className="eyebrow py-1 text-sm text-[#181a15]" href="#features" onClick={close}>
               Showcase

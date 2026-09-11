@@ -214,34 +214,14 @@ export function WaitlistForm({
       setEmail('');
       setMessage('You’re in! We reserved your spot in the early access circle.');
       return;
-    } catch {
-      // Fallback for unreachable backend / not-yet-provisioned database
-    }
-
-    try {
-      const existing = JSON.parse(
-        localStorage.getItem('halberd_waitlist') || '[]'
-      );
-
-      if (!existing.includes(normalizedEmail)) {
-        existing.push(normalizedEmail);
-
-        localStorage.setItem(
-          'halberd_waitlist',
-          JSON.stringify(existing)
-        );
-      }
-    } catch {
-      // Ignore localStorage errors
-    }
-
-    setTimeout(() => {
-      setState('success');
-
+    } catch (err) {
+      console.error('[WaitlistForm] Supabase upsert failed:', err);
+      setState('error');
       setMessage(
-        'You’re in! We reserved your spot in the early access circle.'
+        'Something went wrong saving your email. Please try again later.'
       );
-    }, 450);
+      return;
+    }
   };
 
   const handleExpand = (e: React.MouseEvent) => {
