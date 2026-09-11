@@ -1,4 +1,4 @@
-import { useMemo, useEffect, useRef } from 'react';
+import { useMemo, useEffect, useRef, useState } from 'react';
 import lottie from 'lottie-web';
 
 interface FloatingCircleWidgetProps {
@@ -27,6 +27,7 @@ export function FloatingCircleWidget({
   const dashOffset = circumference * (1 - progress / 100);
 
   const flameContainerRef = useRef<HTMLDivElement>(null);
+  const [isFlameHovered, setIsFlameHovered] = useState(false);
   useEffect(() => {
     if (!flameContainerRef.current) return;
     const anim = lottie.loadAnimation({
@@ -49,16 +50,25 @@ export function FloatingCircleWidget({
           }
         `}</style>
         <div
+          onMouseEnter={() => setIsFlameHovered(true)}
+          onMouseLeave={() => setIsFlameHovered(false)}
           style={{
-            width: size + 8,
-            height: size + 8,
-            borderRadius: '50%',
-            border: '2px solid rgba(72,101,81,0.3)',
-            display: 'flex',
+            display: 'inline-flex',
             alignItems: 'center',
             justifyContent: 'center',
-            userSelect: 'none',
+            gap: isFlameHovered && label ? 10 : 0,
+            paddingLeft: 4,
+            paddingRight: isFlameHovered && label ? 16 : 4,
+            height: size + 8,
+            minWidth: size + 8,
+            borderRadius: 999,
+            border: '2px solid rgba(72,101,81,0.3)',
+            background: '#fdfdfa',
+            cursor: 'pointer',
+            transition: 'gap 0.3s ease, padding 0.3s ease, min-width 0.3s ease',
             animation: 'fw-flame-glow 2.5s ease-in-out infinite',
+            userSelect: 'none',
+            WebkitUserSelect: 'none',
           }}
         >
           <div
@@ -69,6 +79,23 @@ export function FloatingCircleWidget({
               flexShrink: 0,
             }}
           />
+          {label && (
+            <span
+              style={{
+                maxWidth: isFlameHovered ? 200 : 0,
+                opacity: isFlameHovered ? 1 : 0,
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                transition: 'max-width 0.3s ease, opacity 0.25s ease',
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: 13,
+                fontWeight: 500,
+                color: '#1a1c17',
+              }}
+            >
+              {label}
+            </span>
+          )}
         </div>
       </>
     );

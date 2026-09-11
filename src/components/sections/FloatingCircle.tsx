@@ -133,7 +133,7 @@ export function FloatingCircle() {
           </div>
           <div className="max-w-[380px]">
             <div className="mb-4">
-              <FloatingCircleWidget mode="flame" size={48} />
+              <FloatingCircleWidget mode="flame" size={48} label="Go to Gym" />
             </div>
             <p className="text-sm leading-6 text-[#666960]">
               Never lose your place. A single unobtrusive circle rests quietly at the edge of your screen, expanding into just what you need with a single click.
@@ -318,15 +318,13 @@ export function FloatingCircle() {
                   <h3 className="mt-4 text-lg font-medium tracking-tight text-[#161814]">{feature.shortLabel}</h3>
                   <p className="mt-2 text-xs leading-5 text-[#666960]">{feature.description}</p>
 
-                  {/* Inline widget preview */}
-                  <div className="mt-5 flex h-20 items-center justify-center rounded-lg border border-[#e4e3da] bg-[#f3f2ea] p-2 transition-transform duration-300">
-                    {feature.id === 'pomodoro' ? (
-                      <FloatingCircleWidget mode="timer" emoji="🍅" size={38} progress={82} timer="24:55" />
-                    ) : feature.id === 'focus' ? (
-                      <FloatingCircleWidget mode="timer" emoji="🎯" size={38} progress={18} timer="04:42" />
-                    ) : (
-                      <FloatingCircleWidget mode="circle" emoji={feature.id === 'reminders' ? '🔔' : '🔥'} size={38} />
-                    )}
+                  {/* Embedded pill asset preview */}
+                  <div className="mt-5 flex h-20 items-center justify-center rounded-lg border border-[#e4e3da] bg-[#f3f2ea] p-2">
+                    <img
+                      src={feature.image}
+                      alt={feature.title}
+                      className="max-h-12 w-auto object-contain transition-transform duration-300 hover:scale-105"
+                    />
                   </div>
                 </div>
               </Reveal>
