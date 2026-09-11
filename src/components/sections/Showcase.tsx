@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Sparkles, Calendar as CalendarIcon, CheckSquare, Compass, Shield, Laptop } from 'lucide-react';
 import { Reveal } from '../Reveal';
 
@@ -10,7 +10,7 @@ interface TabItem {
   tag: string;
   title: string;
   subtitle: string;
-  image: string;
+  video: string;
   alt: string;
   features: string[];
 }
@@ -22,7 +22,7 @@ const tabs: TabItem[] = [
     tag: '01 / Flagship Experience',
     title: 'The calm start to every session.',
     subtitle: 'Wake up to an uncluttered view of nature, a gentle greeting, and an unobtrusive dock with everything you need.',
-    image: '/home.png',
+    video: '/Videos/home.mp4',
     alt: 'Halberd calm morning browser tab with mountain landscape and floating tools dock',
     features: ['Minimalist clock & greeting', 'Floating Halberd dock', 'Distraction-free sunrise visuals', 'Weather & pet status at a glance'],
   },
@@ -32,7 +32,7 @@ const tabs: TabItem[] = [
     tag: '02 / Smart Schedule',
     title: 'Your day, without tab switching.',
     subtitle: 'Google Calendar seamlessly lives inside your browser space. Review meetings and block focus time with zero friction.',
-    image: '/calendar.png',
+    video: '/Videos/calendar.mp4',
     alt: 'Halberd calendar view integrated with Google Calendar events',
     features: ['121+ Google Calendar events synced', 'Day, Week & Month toggle', 'One-click event creation', 'Direct link to meetings'],
   },
@@ -42,7 +42,7 @@ const tabs: TabItem[] = [
     tag: '03 / Task Stream',
     title: 'Intentional task management.',
     subtitle: 'Sync your Google Tasks directly into your workflow. Categorized cleanly so you focus on one priority at a time.',
-    image: '/todo.png',
+    video: '/Videos/todo.mp4',
     alt: 'Halberd Google Tasks integration showing clean checklist interface',
     features: ['Google Tasks bi-directional sync', 'Contextual tags (Office, Home, Focus)', 'Quick task creation inline', 'Clean check-off satisfaction'],
   },
@@ -52,15 +52,12 @@ export function Showcase() {
   const [activeTab, setActiveTab] = useState<TabKey>('home');
   const current = tabs.find((t) => t.id === activeTab) || tabs[0];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveTab((prev) => {
-        const currentIndex = tabs.findIndex((t) => t.id === prev);
-        return tabs[(currentIndex + 1) % tabs.length].id;
-      });
-    }, 15000);
-    return () => clearInterval(interval);
-  }, []);
+  const handleVideoEnd = () => {
+    setActiveTab((prev) => {
+      const currentIndex = tabs.findIndex((t) => t.id === prev);
+      return tabs[(currentIndex + 1) % tabs.length].id;
+    });
+  };
 
   return (
     <section id="features" className="border-b border-[#dfded7] bg-[#f7f6f0] py-24 sm:py-32">
@@ -139,11 +136,15 @@ export function Showcase() {
             </div>
 
             {/* Screen Content Image */}
-            <div className="relative aspect-[21/10] w-full overflow-hidden bg-[#0d0f0c]">
-              <img
-                src={current.image}
-                alt={current.alt}
-                className="h-full w-full object-cover transition-opacity duration-300"
+            <div className="relative w-full overflow-hidden bg-[#0d0f0c]">
+              <video
+                src={current.video}
+                className="w-full"
+                autoPlay
+                muted
+                playsInline
+                onLoadedData={(e) => { (e.target as HTMLVideoElement).playbackRate = 2; }}
+                onEnded={handleVideoEnd}
                 key={current.id}
               />
               {/* Subtle Vignette Overlay for realism */}

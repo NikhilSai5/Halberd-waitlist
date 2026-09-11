@@ -64,10 +64,14 @@ export function Calendar() {
 
               {/* Main Calendar Screenshot */}
               <div className="relative overflow-hidden rounded-lg">
-                <img
-                  src="/calendar.png"
-                  alt="Halberd calendar connected to Google Calendar"
-                  className="w-full object-cover transition-transform duration-500 group-hover:scale-[1.01]"
+                <video
+                  src="/Videos/calendar.mp4"
+                  className="w-full object-contain transition-transform duration-500 group-hover:scale-[1.01]"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  onLoadedData={(e) => { (e.target as HTMLVideoElement).playbackRate = 2; }}
                 />
               </div>
             </div>

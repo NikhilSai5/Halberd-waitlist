@@ -37,10 +37,14 @@ export function Todo() {
 
               {/* Main Todo Screenshot */}
               <div className="relative overflow-hidden rounded-lg">
-                <img
-                  src="/todo.png"
-                  alt="Halberd todo connected to Google Tasks"
-                  className="w-full object-cover transition-transform duration-500 group-hover:scale-[1.01]"
+                <video
+                  src="/Videos/todo.mp4"
+                  className="w-full object-contain transition-transform duration-500 group-hover:scale-[1.01]"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  onLoadedData={(e) => { (e.target as HTMLVideoElement).playbackRate = 2; }}
                 />
               </div>
 
