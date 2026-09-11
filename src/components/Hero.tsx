@@ -6,12 +6,12 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex h-[100dvh] min-h-[680px] max-h-[1050px] flex-col justify-between overflow-hidden border-b border-[#dfded7] pt-[70px] pb-1 sm:pb-2"
+      className="relative flex h-[100dvh] min-h-[680px] max-h-[1050px] flex-col justify-between overflow-hidden border-[#dfded7] pt-[70px] pb-1 sm:pb-2"
     >
       {/* Layer 0 - Background mountains/sky */}
       <div
-        className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: 'url(/bg.png)' }}
+        className="pointer-events-none absolute inset-x-0 top-0 z-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: 'url(/bg.png)', height: 'calc(100% + 20px)' }}
       />
 
       {/* Ambient background glow */}

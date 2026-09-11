@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Bell, Flame, Target, Timer, Sparkles, CheckCircle2 } from 'lucide-react';
 import { Reveal } from '../Reveal';
+import { FloatingCircleWidget } from './FloatingCircleWidget';
 
 interface Feature {
   id: string;
@@ -131,11 +132,9 @@ export function FloatingCircle() {
             </h2>
           </div>
           <div className="max-w-[380px]">
-            <img
-              src="/floating_circle_habit remainder.png"
-              alt="Floating circle habit reminder"
-              className="mb-4 h-20 w-20 object-contain"
-            />
+            <div className="mb-4">
+              <FloatingCircleWidget mode="flame" size={48} />
+            </div>
             <p className="text-sm leading-6 text-[#666960]">
               Never lose your place. A single unobtrusive circle rests quietly at the edge of your screen, expanding into just what you need with a single click.
             </p>
@@ -253,7 +252,7 @@ export function FloatingCircle() {
                   </div>
 
                   {/* The Floating Circle Capsule containing the real image asset */}
-                  <div className="group relative flex items-center justify-center rounded-3xl border border-[#486551]/20 bg-[#fdfdfa]/95 p-4 shadow-[0_18px_38px_rgba(20,24,18,0.14)] backdrop-blur-sm transition-all duration-500">
+                  <div className="group relative flex flex-col items-center justify-center rounded-3xl border border-[#486551]/20 bg-[#fdfdfa]/95 p-6 shadow-[0_18px_38px_rgba(20,24,18,0.14)] backdrop-blur-sm transition-all duration-500">
                     {activeFeature.id === 'habits' ? (
                       <div className="flex items-center gap-4 px-3 py-2">
                         <img
@@ -319,13 +318,15 @@ export function FloatingCircle() {
                   <h3 className="mt-4 text-lg font-medium tracking-tight text-[#161814]">{feature.shortLabel}</h3>
                   <p className="mt-2 text-xs leading-5 text-[#666960]">{feature.description}</p>
 
-                  {/* Embedded pill asset preview */}
-                  <div className="mt-5 flex h-20 items-center justify-center rounded-lg border border-[#e4e3da] bg-[#f3f2ea] p-2">
-                    <img
-                      src={feature.image}
-                      alt={feature.title}
-                      className="max-h-12 w-auto object-contain transition-transform duration-300 hover:scale-105"
-                    />
+                  {/* Inline widget preview */}
+                  <div className="mt-5 flex h-20 items-center justify-center rounded-lg border border-[#e4e3da] bg-[#f3f2ea] p-2 transition-transform duration-300">
+                    {feature.id === 'pomodoro' ? (
+                      <FloatingCircleWidget mode="timer" emoji="🍅" size={38} progress={82} timer="24:55" />
+                    ) : feature.id === 'focus' ? (
+                      <FloatingCircleWidget mode="timer" emoji="🎯" size={38} progress={18} timer="04:42" />
+                    ) : (
+                      <FloatingCircleWidget mode="circle" emoji={feature.id === 'reminders' ? '🔔' : '🔥'} size={38} />
+                    )}
                   </div>
                 </div>
               </Reveal>
