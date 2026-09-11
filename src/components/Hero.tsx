@@ -7,6 +7,12 @@ export function Hero() {
       id="top"
       className="relative flex h-[100dvh] min-h-[680px] max-h-[1050px] flex-col justify-between overflow-hidden border-b border-[#dfded7] pt-[70px] pb-2 sm:pb-4"
     >
+      {/* Background image */}
+      <div
+        className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: 'url(/bg.png)' }}
+      />
+
       {/* Ambient background glow */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_46%,rgba(72,101,81,0.09),transparent_75%)]" />
 
@@ -49,11 +55,10 @@ export function Hero() {
 
           <a
             href="#features"
-            className="group mt-1.5 flex items-center gap-1.5 text-[9px] font-medium uppercase tracking-widest text-[#737a6e] transition-colors hover:text-[#19211b]"
+            className="hero-arrow group -mt-4 flex items-center justify-center rounded-full p-2.5 text-white transition-opacity duration-300 hover:opacity-70"
             aria-label="Explore features"
           >
-            <span>Explore Halberd</span>
-            <ChevronDown size={11} className="transition-transform group-hover:translate-y-0.5 text-[#486551]" />
+            <ChevronDown size={18} className="text-white" />
           </a>
         </div>
       </div>

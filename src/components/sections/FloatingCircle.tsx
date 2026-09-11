@@ -131,14 +131,14 @@ export function FloatingCircle() {
             </h2>
           </div>
           <div className="max-w-[380px]">
+            <img
+              src="/floating_circle_habit remainder.png"
+              alt="Floating circle habit reminder"
+              className="mb-4 h-20 w-20 object-contain"
+            />
             <p className="text-sm leading-6 text-[#666960]">
               Never lose your place. A single unobtrusive circle rests quietly at the edge of your screen, expanding into just what you need with a single click.
             </p>
-            {/* Auto-rotation indicator */}
-            <div className="mt-3 flex items-center gap-2 text-[11px] text-[#788072]">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#486551] animate-pulse" />
-              <span>Auto-rotating every 15 seconds (pause on hover)</span>
-            </div>
           </div>
         </Reveal>
 
