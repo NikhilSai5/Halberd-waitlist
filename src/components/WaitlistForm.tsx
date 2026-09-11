@@ -149,7 +149,6 @@ import {
   ArrowRight,
   Check,
   Mail,
-  Sparkles,
 } from 'lucide-react';
 
 type SubmitState = 'idle' | 'loading' | 'error' | 'success';
@@ -306,7 +305,7 @@ export function WaitlistForm({
               : 'w-fit'
           }
         `}
-        aria-describedby={`${formId}-note ${formId}-message`}
+        aria-describedby={`${formId}-message`}
       >
         {/* Accessible label */}
         <label
@@ -479,61 +478,6 @@ export function WaitlistForm({
           )}
         </button>
       </form>
-
-      {/* =========================================
-          SUPPORTING INFORMATION
-      ========================================== */}
-      <div
-        className={`
-          mt-2.5
-          flex
-          w-full
-          items-center
-          justify-between
-          px-3
-
-          text-[10px]
-          leading-4
-          text-[#777970]
-
-          transition-all
-          duration-300
-          ease-[cubic-bezier(0.25,0.8,0.25,1)]
-
-          ${
-            expanded
-              ? 'max-h-10 translate-y-0 opacity-100'
-              : 'max-h-0 -translate-y-1 overflow-hidden opacity-0'
-          }
-        `}
-      >
-        <span
-          id={`${formId}-note`}
-          className="whitespace-nowrap"
-        >
-          No marketing spam. Private by design.
-        </span>
-
-        <span
-          className="
-            hidden
-            items-center
-            gap-1
-            font-mono
-            text-[9.5px]
-            text-[#525f50]
-            sm:inline-flex
-          "
-        >
-          <Sparkles
-            size={9}
-            strokeWidth={1.5}
-            className="text-[#486551]"
-          />
-
-          1,480+ in waitlist
-        </span>
-      </div>
 
       {/* =========================================
           STATUS MESSAGE
