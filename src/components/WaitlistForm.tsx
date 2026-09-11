@@ -150,6 +150,7 @@ import {
   Check,
   Mail,
 } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 type SubmitState = 'idle' | 'loading' | 'error' | 'success';
 
@@ -195,33 +196,26 @@ export function WaitlistForm({
     setState('loading');
     setMessage('');
 
+    // Primary path: save to Supabase. Duplicate emails are silently skipped
+    // thanks to the unique(email) constraint + ignoreDuplicates upsert.
     try {
-      const response = await fetch('/api/waitlist', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: normalizedEmail,
-        }),
-      });
-
-      if (response.ok) {
-        const data = (await response.json()) as {
-          message?: string;
-        };
-
-        setState('success');
-
-        setMessage(
-          data.message ??
-            'You’re on the waitlist. We’ll be in touch soon.'
+      const { error } = await supabase
+        .from('waitlist')
+        .upsert(
+          { email: normalizedEmail },
+          { onConflict: 'email', ignoreDuplicates: true },
         );
 
-        return;
+      if (error) {
+        throw error;
       }
+
+      setState('success');
+      setEmail('');
+      setMessage('You’re in! We reserved your spot in the early access circle.');
+      return;
     } catch {
-      // Fallback for static client environments
+      // Fallback for unreachable backend / not-yet-provisioned database
     }
 
     try {

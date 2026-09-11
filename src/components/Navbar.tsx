@@ -45,7 +45,7 @@ export function Navbar() {
         </nav>
 
         <a
-          href="#hero-waitlist"
+          href="#waitlist"
           className="hidden items-center gap-2 rounded-full bg-[#111111] px-5 py-2.5 text-[11px] font-medium uppercase tracking-[.13em] text-[#f9f9f7] transition-all hover:bg-[#486551] hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#486551] focus-visible:ring-offset-2 md:inline-flex"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-[#7fc788] animate-pulse" />
