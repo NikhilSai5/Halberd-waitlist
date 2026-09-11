@@ -97,11 +97,12 @@ export function Hero() {
 
     if (interactiveOverlay) {
       timeline.from(
-        interactiveOverlay,
+        interactiveOverlay.children,
         {
           opacity: 0,
-          y: 30,
-          duration: 1.5,
+          y: 20,
+          stagger: 0.12,
+          duration: 1.2,
           ease: 'power2.out',
         },
         '3.2'
@@ -243,8 +244,8 @@ export function Hero() {
         data-speedz="0"
         data-rotation="0.11"
       >
-        <h2>China</h2>
-        <h1>Zhangjiajie</h1>
+        <h2>A Quieter Way</h2>
+        <h1>Halberd</h1>
       </div>
 
       <img
@@ -362,11 +363,22 @@ export function Hero() {
 
       {/* Interactive CTA & navigation overlay */}
       <div className="hero-interactive-overlay">
-        <WaitlistForm formId="hero-waitlist" />
+        <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/40 px-3.5 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-white/90 shadow-md backdrop-blur-md">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#7fc788] animate-pulse" />
+          <span>Productivity &amp; Focus Workspace</span>
+        </div>
+
+        <p className="max-w-[500px] text-center text-xs sm:text-sm font-normal leading-relaxed text-white/90 drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)] px-4">
+          A calm browser sanctuary to protect your attention, organize your day, and quiet the digital noise.
+        </p>
+
+        <div className="w-full max-w-[440px] px-4">
+          <WaitlistForm formId="hero-waitlist" />
+        </div>
 
         <a
           href="#features"
-          className="hero-arrow group -mt-1 flex items-center justify-center rounded-full p-2.5 text-white/90 transition-opacity duration-300 hover:text-white hover:opacity-80"
+          className="hero-arrow group mt-0.5 flex items-center justify-center rounded-full p-2 text-white/80 transition-all hover:text-white hover:opacity-100"
           aria-label="Explore features"
         >
           <ChevronDown size={22} />
