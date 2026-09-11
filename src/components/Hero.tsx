@@ -20,6 +20,7 @@ export function Hero() {
     let xValue = 0;
     let yValue = 0;
     let rotateDegree = 0;
+    const PARALLAX_DAMPING = 0.55; // < 1 = less movement
 
     const update = (cursorPosition: number) => {
       parallax_el.forEach((el) => {
@@ -117,9 +118,9 @@ export function Hero() {
 
     const handleMouseMove = (e: MouseEvent) => {
       if (timeline.isActive()) return;
-      xValue = e.clientX - window.innerWidth / 2;
-      yValue = e.clientY - window.innerHeight / 2;
-      rotateDegree = (xValue / (window.innerWidth / 2)) * 20;
+      xValue = (e.clientX - window.innerWidth / 2) * PARALLAX_DAMPING;
+      yValue = (e.clientY - window.innerHeight / 2) * PARALLAX_DAMPING;
+      rotateDegree = (xValue / (window.innerWidth / 2)) * 12;
       update(e.clientX);
     };
 
@@ -127,9 +128,9 @@ export function Hero() {
       if (timeline.isActive()) return;
       const touch = e.touches[0];
       if (touch) {
-        xValue = touch.clientX - window.innerWidth / 2;
-        yValue = touch.clientY - window.innerHeight / 2;
-        rotateDegree = (xValue / (window.innerWidth / 2)) * 20;
+        xValue = (touch.clientX - window.innerWidth / 2) * PARALLAX_DAMPING;
+        yValue = (touch.clientY - window.innerHeight / 2) * PARALLAX_DAMPING;
+        rotateDegree = (xValue / (window.innerWidth / 2)) * 12;
         update(touch.clientX);
       }
     };
