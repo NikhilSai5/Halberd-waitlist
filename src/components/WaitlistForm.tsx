@@ -196,17 +196,14 @@ export function WaitlistForm({
     setState('loading');
     setMessage('');
 
-    // Primary path: save to Supabase. Duplicate emails are silently skipped
-    // thanks to the unique(email) constraint + ignoreDuplicates upsert.
+    // Primary path: save to Supabase. Duplicate emails are silently skipped.
     try {
       const { error } = await supabase
         .from('waitlist')
-        .upsert(
-          { email: normalizedEmail },
-          { onConflict: 'email', ignoreDuplicates: true },
-        );
+        .insert([{ email: normalizedEmail }]);
 
-      if (error) {
+      // 23505 = unique_violation (duplicate email) — treat as success
+      if (error && error.code !== '23505') {
         throw error;
       }
 
