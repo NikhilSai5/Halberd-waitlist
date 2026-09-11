@@ -251,7 +251,8 @@ export function WaitlistForm({
     }, 450);
   };
 
-  const handleExpand = () => {
+  const handleExpand = (e: React.MouseEvent) => {
+    e.preventDefault();
     if (locked) return;
 
     setExpanded(true);
@@ -387,7 +388,7 @@ export function WaitlistForm({
         ========================================== */}
         <button
           type={expanded ? 'submit' : 'button'}
-          onClick={!expanded ? handleExpand : undefined}
+          onClick={!expanded ? (e) => handleExpand(e) : undefined}
           disabled={locked}
           className="
             flex
@@ -435,7 +436,9 @@ export function WaitlistForm({
               ? 'Joining…'
               : state === 'success'
                 ? 'Joined'
-                : 'Join waitlist'}
+                : expanded
+                  ? 'Join waitlist'
+                  : 'Interested'}
           </span>
 
           {/* Loading indicator */}
@@ -462,19 +465,18 @@ export function WaitlistForm({
             />
           )}
 
-          {/* Default arrow */}
-          {state !== 'loading' &&
-            state !== 'success' && (
-              <ArrowRight
-                size={11}
-                strokeWidth={1.8}
-                className="
-                  transition-transform
-                  duration-200
-                  group-hover:translate-x-0.5
-                "
-              />
-            )}
+          {/* Default arrow - only when collapsed */}
+          {!expanded && state !== 'loading' && state !== 'success' && (
+            <ArrowRight
+              size={11}
+              strokeWidth={1.8}
+              className="
+                transition-transform
+                duration-200
+                group-hover:translate-x-0.5
+              "
+            />
+          )}
         </button>
       </form>
 
@@ -558,7 +560,7 @@ export function WaitlistForm({
         `}
       >
         {/* Error */}
-        {state === 'error' && (
+        {expanded && state === 'error' && (
           <p className="text-center text-[#8c4d40]">
             {message}
           </p>

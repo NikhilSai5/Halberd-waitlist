@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Sparkles, Calendar as CalendarIcon, CheckSquare, Compass, Shield, Laptop } from 'lucide-react';
 import { Reveal } from '../Reveal';
 
@@ -52,6 +52,16 @@ export function Showcase() {
   const [activeTab, setActiveTab] = useState<TabKey>('home');
   const current = tabs.find((t) => t.id === activeTab) || tabs[0];
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTab((prev) => {
+        const currentIndex = tabs.findIndex((t) => t.id === prev);
+        return tabs[(currentIndex + 1) % tabs.length].id;
+      });
+    }, 15000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section id="features" className="border-b border-[#dfded7] bg-[#f7f6f0] py-24 sm:py-32">
       <div className="section-wrap">
@@ -102,7 +112,7 @@ export function Showcase() {
         </Reveal>
 
         {/* Browser Mockup Window */}
-        <Reveal delay="delay-2">
+        <Reveal delay="delay-2" className="mx-auto w-full max-w-8xl">
           <div className="overflow-hidden rounded-2xl border border-[#d2d1c8] bg-[#1a1c18] shadow-[0_28px_60px_-15px_rgba(20,24,18,0.18)] transition-all">
             {/* Window Top Bar (Chrome / macOS style) */}
             <div className="flex items-center justify-between border-b border-[#2d312a] bg-[#222620] px-4 py-3 text-xs text-[#a3aca0]">
@@ -129,7 +139,7 @@ export function Showcase() {
             </div>
 
             {/* Screen Content Image */}
-            <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#0d0f0c]">
+            <div className="relative aspect-[21/10] w-full overflow-hidden bg-[#0d0f0c]">
               <img
                 src={current.image}
                 alt={current.alt}
