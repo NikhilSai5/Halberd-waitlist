@@ -245,7 +245,7 @@ export function Hero() {
         data-speedz="0"
         data-rotation="0.11"
       >
-        <h2>A Quieter Way</h2>
+        <h2>A More Focused Internet</h2>
         <h1>Halberd</h1>
       </div>
 
