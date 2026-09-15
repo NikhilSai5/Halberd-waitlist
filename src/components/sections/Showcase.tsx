@@ -75,7 +75,7 @@ export function Showcase() {
             </h2>
           </div>
           <p className="max-w-[340px] text-sm leading-6 text-[#666960]">
-            Experience how Halberd transforms your new tab into an oasis of intention. Switch views below to explore each core surface.
+            Everyone opens new tabs dozens of times a day. What if that empty tab became a productive console instead? Halberd transforms every new tab into a calm workspace where you never forget your tasks, your schedule stays visible, and your focus remains unbroken.
           </p>
         </Reveal>
 

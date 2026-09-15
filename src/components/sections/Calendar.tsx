@@ -18,7 +18,7 @@ export function Calendar() {
             </h2>
 
             <p className="mt-6 max-w-[340px] text-sm leading-7 text-[#666960]">
-              Halberd brings your Google Calendar directly into your new tab space. View your daily flow, upcoming meetings, and focus blocks without opening another crowded calendar tab.
+              Never forget a calendar event or reminder again. Halberd brings your Google Calendar directly into your new tab space, so every time you open a browser you see your daily flow, upcoming meetings, and focus blocks — no more missed appointments or double-booked schedules.
             </p>
 
             <div className="mt-8 space-y-4 border-t border-[#dfded7] pt-6">

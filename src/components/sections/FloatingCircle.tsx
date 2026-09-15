@@ -136,7 +136,7 @@ export function FloatingCircle() {
               <FloatingCircleWidget mode="flame" size={48} label="Go to Gym" />
             </div>
             <p className="text-sm leading-6 text-[#666960]">
-              Never lose your place. A single unobtrusive circle rests quietly at the edge of your screen, expanding into just what you need with a single click.
+              The floating window is always there to remind you of your tasks and habits. It rests quietly at the edge of your screen, expanding into just what you need with a single click — never intrusive, always helpful.
             </p>
           </div>
         </Reveal>

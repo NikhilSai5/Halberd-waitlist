@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://halberd-waitlist.vercel.app/sitemap.xml

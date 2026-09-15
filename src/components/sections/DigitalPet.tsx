@@ -146,12 +146,12 @@ export function DigitalPet() {
                   <p className="mt-1 text-sm font-semibold text-[#1a1d17]">7 Days</p>
                 </div>
                 <div className="rounded-xl bg-[#f7f6ef] p-3">
-                  <p className="font-mono text-[10px] uppercase text-[#737a6e]">Current Mood</p>
-                  <p className="mt-1 text-sm font-semibold text-[#1a1d17] capitalize">{mood}</p>
+                  <p className="font-mono text-[10px] uppercase text-[#737a6e]">Points Earned</p>
+                  <p className="mt-1 text-sm font-semibold text-[#486551]">2,450</p>
                 </div>
                 <div className="rounded-xl bg-[#f7f6ef] p-3">
-                  <p className="font-mono text-[10px] uppercase text-[#737a6e]">Affection</p>
-                  <p className="mt-1 text-sm font-semibold text-[#486551]">100% Calm</p>
+                  <p className="font-mono text-[10px] uppercase text-[#737a6e]">Pet Level</p>
+                  <p className="mt-1 text-sm font-semibold text-[#1a1d17]">Level 5</p>
                 </div>
               </div>
             </div>
@@ -170,22 +170,29 @@ export function DigitalPet() {
             </h2>
 
             <p className="mt-7 max-w-[380px] text-sm leading-7 text-[#60665b]">
-              Most internet productivity software is cold and utilitarian. Halberd pairs your focus sessions with a charming 8-bit digital cat companion who sleeps when you rest, purrs when you stay in the zone, and reminds you to stay human.
+              Most internet productivity software is cold and utilitarian. Halberd pairs your focus sessions with a charming 8-bit digital cat companion who grows with your productivity. Earn more points by completing tasks and focus sessions, then buy your pet the toys and food they deserve. The more productive you are, the happier and healthier your companion becomes — and they will remind you to stay on track.
             </p>
 
             <div className="mt-8 flex flex-col gap-4 border-t border-[#dfded7] pt-6">
               <div className="flex items-start gap-3">
                 <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#486551] text-[10px] text-white">✓</span>
                 <div>
-                  <h4 className="text-sm font-medium text-[#1a1c17]">Responds to your focus sessions</h4>
-                  <p className="text-xs text-[#6e7469]">Naps peacefully during deep work intervals so you never get pulled out of flow.</p>
+                  <h4 className="text-sm font-medium text-[#1a1c17]">Grows with your productivity</h4>
+                  <p className="text-xs text-[#6e7469]">Complete focus sessions and tasks to earn points. Watch your companion evolve and thrive as you build better habits.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#486551] text-[10px] text-white">✓</span>
                 <div>
-                  <h4 className="text-sm font-medium text-[#1a1c17]">Zero guilt gamification</h4>
-                  <p className="text-xs text-[#6e7469]">No punishing notifications or dying pets. Just unconditional companionship.</p>
+                  <h4 className="text-sm font-medium text-[#1a1c17]">Reward your pet with toys and food</h4>
+                  <p className="text-xs text-[#6e7469]">Spend earned points on accessories, toys, and treats. Your pet deserves the best for helping you stay focused.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#486551] text-[10px] text-white">✓</span>
+                <div>
+                  <h4 className="text-sm font-medium text-[#1a1c17]">Reminds you to do your tasks</h4>
+                  <p className="text-xs text-[#6e7469]">Your companion gently nudges you to complete tasks and maintain your habits throughout the day.</p>
                 </div>
               </div>
             </div>
